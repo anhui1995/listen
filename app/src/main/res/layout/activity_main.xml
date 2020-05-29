@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,69 +11,121 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@color/red"
+        android:background="@color/gray"
         android:orientation="horizontal"
         android:paddingLeft="20dp"
-        android:paddingTop="10dp"
+        android:paddingTop="5dp"
         android:paddingRight="20dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="2dp">
 
-        <Button
+        <TextView
             android:id="@+id/main_but_list"
+            style="@style/main_text_select"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:text="音乐列表"
-            android:textSize="18sp" />
+            android:gravity="center"
+            android:text="音乐列表" />
 
-        <Button
+        <TextView
             android:id="@+id/main_but_search"
+            style="@style/main_text_noselect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:text="歌曲搜索"
-            android:textSize="18sp" />
+            android:gravity="center"
+            android:text="歌曲搜索" />
 
-        <Button
+        <TextView
             android:id="@+id/main_but_user"
+            style="@style/main_text_noselect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:text="个人账户"
-            android:textSize="18sp" />
+            android:text="个人账户" />
     </LinearLayout>
 
-    <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager.widget.ViewPager
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/main_lay_relative"
+        android:layout_above="@+id/main_music_player"
         android:layout_below="@+id/a2w_layout_1" />
 
     <RelativeLayout
-        android:id="@+id/main_lay_relative"
+        android:id="@+id/main_music_player"
         android:layout_width="match_parent"
-
-        android:layout_height="70dp"
+        android:layout_height="47dp"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
-        android:background="@color/blue">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="317dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/main_player_top_line"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
-            android:text="底部音乐播放器控件"
-            android:textColor="@color/whites"
-            android:textSize="24sp" />
+            android:orientation="horizontal">
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/main_player_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/main_player_layout_button" />
+
+            <LinearLayout
+                android:id="@+id/main_player_layout_button"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0dp"
+                android:layout_toStartOf="@+id/main_player_layout_list"
+                android:orientation="horizontal">
+
+                <xin.xiaoa.listen.MainPlayerButton
+                    android:id="@+id/main_player_button"
+                    android:layout_width="40dp"
+                    android:layout_height="46dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/main_player_layout_list"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/img_main_player_list" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
     </RelativeLayout>
+
+
 
 </RelativeLayout>

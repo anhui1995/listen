@@ -1,9 +1,13 @@
 package xin.xiaoa.listen;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -15,16 +19,21 @@ import java.util.List;
 public class ActivityMain extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
 
-    View view;
+//    View viewMusicPlayer;
     ViewPager viewPager;
     Context context;
 
-    Button butList;
-    Button butSearch;
-    Button butUser;
+    TextView butList;
+    TextView butSearch;
+    TextView butUser;
+
+//    private CircleProgress cnp_citcleNumberProgress;
+
+    MusicPlayer musicPlayer;
 
     private List<Fragment> mFragmentList; //ViewPager的数据源
 
+    private int progress=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +44,20 @@ public class ActivityMain extends AppCompatActivity implements ViewPager.OnPageC
         initButton();
 
         initViewPager();
+
+        initMusicPlayer();
+
+
     }
 
     public List<Fragment> getMList(){
         return mFragmentList;
     }
 
+    private void initMusicPlayer(){
+
+        musicPlayer = new MusicPlayer(this,this);
+    }
     private void initButton(){
 
         butList = findViewById(R.id.main_but_list);
@@ -75,14 +92,31 @@ public class ActivityMain extends AppCompatActivity implements ViewPager.OnPageC
 
     void setButtonBackground(int position){
 
-        if(position == 0) butList.setBackgroundResource(R.drawable.main_button_background_select);
-        else butList.setBackgroundResource(R.drawable.main_button_background_noselect);
+//        if(position == 0) butList.setBackgroundResource(R.drawable.main_button_background_select);
+//        else butList.setBackgroundResource(R.drawable.main_button_background_noselect);
+//
+//        if(position == 1) butSearch.setBackgroundResource(R.drawable.main_button_background_select);
+//        else butSearch.setBackgroundResource(R.drawable.main_button_background_noselect);
+//
+//        if(position == 2) butUser.setBackgroundResource(R.drawable.main_button_background_select);
+//        else butUser.setBackgroundResource(R.drawable.main_button_background_noselect);
 
-        if(position == 1) butSearch.setBackgroundResource(R.drawable.main_button_background_select);
-        else butSearch.setBackgroundResource(R.drawable.main_button_background_noselect);
 
-        if(position == 2) butUser.setBackgroundResource(R.drawable.main_button_background_select);
-        else butUser.setBackgroundResource(R.drawable.main_button_background_noselect);
+        if(position == 0) butList.setTextAppearance(this, R.style.main_text_select);
+        else butList.setTextAppearance(this, R.style.main_text_noselect);
+
+        if(position == 1) butSearch.setTextAppearance(this, R.style.main_text_select);
+        else butSearch.setTextAppearance(this, R.style.main_text_noselect);
+
+        if(position == 2) butUser.setTextAppearance(this, R.style.main_text_select);
+        else butUser.setTextAppearance(this, R.style.main_text_noselect);
+
+//        if(position == 1) butSearch.setTypeface(Typeface.defaultFromStyle(R.style.main_text_select));
+//        else butSearch.setTypeface(Typeface.defaultFromStyle(R.style.main_text_noselect));
+//
+//        if(position == 2) butUser.setTypeface(Typeface.defaultFromStyle(R.style.main_text_select));
+//        else butUser.setTypeface(Typeface.defaultFromStyle(R.style.main_text_noselect));
+
 
     }
 
@@ -97,6 +131,7 @@ public class ActivityMain extends AppCompatActivity implements ViewPager.OnPageC
         //ViewPager滑动
         setButtonBackground(position);
         System.out.println("selectTab"+position);
+
     }
 
     @Override

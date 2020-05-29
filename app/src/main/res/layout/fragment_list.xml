@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:paddingTop="100dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="fragment_list" />
+    <xin.xiaoa.listen.MainPlayerButton
+        android:id="@+id/win_home"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+
 </LinearLayout>
